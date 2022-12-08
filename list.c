@@ -72,14 +72,17 @@ struct Person* find_node(struct Person *list, int ind) {
         return create_address_node(" ");
     }
 
-    struct Person *node = NULL;
+    if(list == NULL) { 
+        printf("Tuscias sarasas\n");
+        return NULL;
+    }
+
     struct Person *temp = list;
 
-    for(int i = 0; i <= ind; i++) {
-        node = temp;
+    for(int i = 0; i < ind; i++) {
         temp=temp->next;
     }
-    return node;
+    return temp;
 }
 
 struct Person* find_node_text(struct Person *list, int option, char *data) {
@@ -87,7 +90,6 @@ struct Person* find_node_text(struct Person *list, int option, char *data) {
         printf("Empty list, can not find\n");
         return NULL;
     }
-    struct Person *to_find = NULL;
     switch(option) {
         case 10: //find by name
             while(list != NULL) {
