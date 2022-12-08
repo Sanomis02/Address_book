@@ -19,7 +19,7 @@ void drawLine();
 void helpWindow();
 
 int main(void) {
-
+    signal(SIGTSTP, sigint_handler);
     struct sigaction sa;
     memset(&sa, 0, sizeof(struct sigaction));
     sa.sa_handler = sigint_handler;
