@@ -138,7 +138,7 @@ struct Person* find_node_text(struct Person *list, int option, char *data) {
                 }         
                 list = list->next;
             }
-            return NULL;
+            return found_list;
         case 13: //find by number
             while(list != NULL) {
                 if(strcmp(list->number,data) == 0) {
@@ -148,7 +148,7 @@ struct Person* find_node_text(struct Person *list, int option, char *data) {
                 }
                 list = list->next;
             }
-            return NULL;
+            return found_list;
         default:
             printf("Choose valid option\n");
             return NULL;            
