@@ -6,6 +6,22 @@
 #define DELIMETER ","
 int size = 0;
 
+struct Person* create_node(char *name, char *surname, char *number, char *email)
+{
+    struct Person *person = NULL;
+    person = (struct Person*)malloc(sizeof(struct Person));
+    if (person == NULL) {
+        return NULL;
+    }
+    strncpy(person->name, name, SIZE - 1);
+    strncpy(person->surname, surname, SIZE - 1); 
+    strncpy(person->number, number, SIZE - 1); 
+    strncpy(person->email, strcat(email,"\n"), SIZE-1);
+    person->next = NULL;
+
+    return person;
+}
+
 struct Person* create_address_node(char *address_line)
 {
     struct Person *person = NULL;
@@ -71,18 +87,19 @@ struct Person* find_node(struct Person *list, int ind) {
         printf("index out of range\n");
         return create_address_node(" ");
     }
-
     if(list == NULL) { 
         printf("Tuscias sarasas\n");
         return NULL;
     }
 
+    struct Person *node = NULL;
     struct Person *temp = list;
 
-    for(int i = 0; i < ind; i++) {
+    for(int i = 0; i <= ind; i++) {
+        node = temp;
         temp=temp->next;
     }
-    return temp;
+    return node;
 }
 
 struct Person* find_node_text(struct Person *list, int option, char *data) {
