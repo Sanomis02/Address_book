@@ -107,32 +107,45 @@ struct Person* find_node_text(struct Person *list, int option, char *data) {
         printf("Empty list, can not find\n");
         return NULL;
     }
+    struct Person *found_list = NULL;
     switch(option) {
         case 10: //find by name
             while(list != NULL) {
-                if(strcmp(list->name,data) == 0)
-                    return list;
+                if(strcmp(list->name,data) == 0) {
+                    struct Person* element = NULL;
+                    element = create_node(list->name, list->surname, list->number, list->email);
+                    add_to_list(&found_list, element);
+                }
                 list = list->next;
             }
-            return NULL;
+            return found_list;
         case 11: //find by surname
             while(list != NULL) {
-                if(strcmp(list->surname,data) == 0)
-                    return list;
+                if(strcmp(list->surname,data) == 0) {
+                    struct Person* element = NULL;
+                    element = create_node(list->name, list->surname, list->number, list->email);
+                    add_to_list(&found_list, element);
+                }
                 list = list->next;
             }
-            return NULL;
+            return found_list;
         case 12: //find by email
             while(list != NULL) {
-                if(strcmp(list->email,data) == 0)
-                    return list;
+                if(strcmp(list->email,data) == 0) {
+                    struct Person* element = NULL;
+                    element = create_node(list->name, list->surname, list->number, list->email);
+                    add_to_list(&found_list, element);
+                }         
                 list = list->next;
             }
             return NULL;
         case 13: //find by number
             while(list != NULL) {
-                if(strcmp(list->number,data) == 0)
-                    return list;
+                if(strcmp(list->number,data) == 0) {
+                    struct Person* element = NULL;
+                    element = create_node(list->name, list->surname, list->number, list->email);
+                    add_to_list(&found_list, element);
+                }
                 list = list->next;
             }
             return NULL;
