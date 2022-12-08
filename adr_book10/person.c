@@ -5,32 +5,7 @@
 
 #include "person.h"
 
- #define DELIMETER ","
-
-struct Person* create_address_node(char *address_line)
-{
-    struct Person *person = NULL;
-    char *name = NULL;
-    char *surname = NULL;
-    char *number = NULL;
-    char *email = NULL;
-
-    name = strtok(address_line, DELIMETER);
-    if(name == NULL)
-        name = "NaN";
-    surname = strtok(NULL, DELIMETER);
-    if(surname == NULL)
-        surname = "NaN";
-    number = strtok(NULL, DELIMETER);
-    if(number == NULL)
-        number = "NaN";
-    email = strtok(NULL, DELIMETER);
-    if(email == NULL)
-        email = "NaN";
-    person = create_node(name, surname, number, email);
-    
-    return person;
-}
+#define DELIMETER ","
 
 struct Person* create_node(char *name, char *surname, char *number, char *email)
 {
