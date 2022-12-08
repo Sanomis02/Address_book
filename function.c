@@ -6,13 +6,6 @@ void clearInput() {
     while((getchar()) != '\n' && getchar() != EOF) {}
 }
 
-// void validateInput() {
-//     if(getchar() != '\n') {
-//         clearInput();
-//         printf("Ivedimas virsijo dydi\n");
-//     }
-// }
-
 //Metodas paimtas is https://github.com/janenas-luk/linked_list_address_book/blob/main/helpers.c
 void parse_user_input(char *name, char *surname, char *email, char *number)
 {
@@ -55,8 +48,10 @@ void func_add_index(struct Person **list) {
     scanf("%12d", &ind);
     clearInput();
 
-    (ind >= 0) && (ind < getSize(*list)) ? add_by_index(list, person, ind) : printf("Netinkamas indeksas\n");
-    ind = -1;
+    if((ind >=0) && (ind < getSize(*list))) 
+        add_by_index(list, person, ind);
+    else
+        printf("Netinkamas indeksas\n");
 }
 
 void func_remove_index(struct Person **list) {
@@ -64,7 +59,10 @@ void func_remove_index(struct Person **list) {
     printf("Enter index for removal\n");
     scanf("%d", &ind);
     clearInput();
-    (ind >= 0) && (ind < getSize(*list)) ? remove_by_index(list, ind) : printf("Netinkamas indeksas\n");
+    if((ind >=0) && (ind < getSize(*list))) 
+        remove_by_index(list, ind);
+    else
+        printf("Netinkamas indeksas\n");
 }
 
 void func_find_index(struct Person *list) {
@@ -73,8 +71,10 @@ void func_find_index(struct Person *list) {
     scanf("%12d", &ind);
     clearInput();
     struct Person *p = NULL;
-    (ind >= 0) && (ind < getSize(list)) ? (p = find_node(list, ind)) : (p = NULL);
-    ind = -1;
+    if((ind >= 0) && (ind < getSize(list)))
+        p = find_node(list, ind);
+    else 
+        p = NULL;
     if(p != NULL)
         printf("%s %s %s %s\n",p->name,p->surname,p->number,p->email);
     else
@@ -90,7 +90,13 @@ void func_find_criteria(struct Person *list) {
     printf("Input data to search for\n");
     scanf("%48[^\n]s", data);
     struct Person *p = NULL;
-    (ind >= 0) ? (p = find_node_text(list, ind, data)) : (p = NULL);
-    ind = -1;
-    p != NULL ? printf("Found the person!\n") : printf("Did not find the person\n"); 
+    if(ind >= 0) 
+        p = find_node_text(list, ind, data);
+    else 
+        p = NULL;
+
+    if(p != NULL)
+        printf("Found the person!\n");
+    else
+        printf("Did not find the person\n");
 }
