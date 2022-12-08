@@ -11,10 +11,6 @@ static int run = 1;
 
 void sigint_handler(int signum) {
     printf("SIGINT INITIATED\n");
-}
-
-void sigquit_handler(int signum) {
-    printf("QUIT SIGNAL INITIATED\n");
     run = 0;
 }
 
@@ -24,8 +20,11 @@ void helpWindow();
 
 int main(void) {
 
-    signal(SIGINT, sigint_handler);
-    signal(SIGQUIT, sigquit_handler);
+    struct sigaction sa;
+    memset(&sa, 0, sizeof(struct sigaction));
+    sa.sa_handler = sigint_handler;
+    sa.sa_flags = 0;
+    sigaction(SIGINT, &sa, NULL);
 
     char adr_file_path[SIZE] = "data.csv";
     struct Person *list = NULL;
@@ -42,18 +41,15 @@ int main(void) {
 
     char ctrl[12];
 
-    int ind = -1;
-
     drawLine();
     drawFunctions();
     drawLine();
     helpWindow();
     drawLine();
-
+    //Kurias mygtuku kombinacijas
     while(run) {
         printf("What function to perform?\n");
         scanf(" %10[^\n]s", ctrl);
-        clearInput();
         switch(*ctrl) {
             case '0': //draw functions
                 drawFunctions();
