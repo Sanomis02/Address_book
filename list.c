@@ -4,7 +4,6 @@
 
 #include "list.h"
 #define DELIMETER ","
-int size = 0;
 
 struct Person* create_node(char *name, char *surname, char *number, char *email)
 {
@@ -53,7 +52,6 @@ void add_to_list(struct Person **list, struct Person *person)
     struct Person* temp = *list;
     if (temp == NULL) {
         *list = person;
-        size++;
         return; 
     }
 
@@ -61,7 +59,6 @@ void add_to_list(struct Person **list, struct Person *person)
         temp = temp->next;
     }
     temp->next = person;
-    size++;
 }
 
 void add_by_index(struct Person**list, struct Person *person, int ind) {
@@ -69,7 +66,6 @@ void add_by_index(struct Person**list, struct Person *person, int ind) {
         return;
     if(size == 0) {
         *list = person;
-        size++;
         return;
     }  
 
@@ -79,7 +75,6 @@ void add_by_index(struct Person**list, struct Person *person, int ind) {
     node->next = NULL;
     node->next = person;
     person->next = temp;
-    size++;
 }
 
 struct Person* find_node(struct Person *list, int ind) {
@@ -198,7 +193,6 @@ void delete_list(struct Person **list)
         free(to_delete);
         to_delete = *list;
     }
-    size = 0;
 }
 
 void load_addresses(FILE *file, struct Person **list)
