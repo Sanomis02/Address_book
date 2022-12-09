@@ -64,7 +64,7 @@ void add_to_list(struct Person **list, struct Person *person)
 void add_by_index(struct Person**list, struct Person *person, int ind) {
     if(person == NULL)
         return;
-    if(size == 0) {
+    if(*list == NULL) {
         *list = person;
         return;
     }  
@@ -78,7 +78,7 @@ void add_by_index(struct Person**list, struct Person *person, int ind) {
 }
 
 struct Person* find_node(struct Person *list, int ind) {
-    if(ind > size-1 || ind < 0) {
+    if(ind > getSize(list) || ind < 0) {
         printf("index out of range\n");
         return create_address_node(" ");
     }
@@ -211,7 +211,7 @@ void load_addresses(FILE *file, struct Person **list)
 }
 
 int getSize(struct Person *list) {
-    size = 0;
+    int size = 0;
     struct Person *temp = list;
     while(temp != NULL) {
         temp = temp->next;
