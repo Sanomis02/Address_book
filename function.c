@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "list.h"
 #include "function.h"
 
@@ -95,8 +96,10 @@ void func_find_criteria(struct Person *list) {
     else 
         p = NULL;
 
-    if(p != NULL)
-        printf("Found the person!\n");
+    if(p != NULL) {
+        print_list(p);
+        free(p);
+    }
     else
         printf("Did not find the person\n");
 }
